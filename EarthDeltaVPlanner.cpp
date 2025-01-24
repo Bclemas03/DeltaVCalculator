@@ -1,6 +1,6 @@
 //Helix Industries DeltaV Calculator
 //by Benjamin Clemas
-//V0.2
+//V0.3
 
 #include <iostream>
 #include <bits/stdc++.h>
@@ -38,6 +38,45 @@ map <string, double> DeltaVMap(){
 
   dv["Mars LO"] = dv["Phobos Transfer"] + 0.698;
   dv["Mars"] = dv["Mars LO"] + 3.578;
+
+  //Asteroid Belt
+  dv["Vesta Transfer"] = dv["Mars Transfer"] + 0.923;
+  
+  dv["Ceres Transfer"] = dv["Vesta Transfer"] + 0.379;
+
+  dv["Hygiea Transfer"] = dv["Ceres Transfer"] + 0.297;
+  
+  //Jupiter System
+  dv["Jupiter Transfer"] = dv["Hygiea Transfer"] + 1.099;
+
+  //Saturn System
+  dv["Saturn Transfer"] = dv["Jupiter Transfer"] + 0.987;
+
+  //Uranus System
+  dv["Uranus Transfer"] = dv["Saturn Transfer"] + 0.690;
+
+  //Nepture System
+  dv["Nepture Transfer"] = dv["Uranus Transfer"] + 0.269;
+
+  ////Kuiper Belt
+  //Pluto System
+  dv["Pluto Transfer"] = dv["Neptune Transfer"] + 0.117;
+
+  //Haumea System
+  dv["Haumea Transfer"] = dv["Pluto Transfer"] + 0.033;
+
+  //Makemake System
+  dv["Makemake Transfer"] = dv["Haumea Transfer"] + 0.017;
+
+
+  //Eris System
+  dv["Eris Transfer"] = dv["Makemake Transfer"] + 0.109;
+
+  //Sedma System
+  dv["Sedna Transfer"] = dv["Eris Transfer"] + 0.2;
+
+  //Sun Escape
+  dv["Sun Esacape"] = dv["Sedna Transfer"] + 0.03;
 
   //Venus System
   dv["Venus Transfer"] = dv["Earth Capture/Escape"] + 0.28;
