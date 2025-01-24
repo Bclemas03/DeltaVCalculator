@@ -1,6 +1,6 @@
 //Helix Industries DeltaV Calculator
 //by Benjamin Clemas
-//V0.65
+//V0.8
 
 #include <iostream>
 #include <bits/stdc++.h>
@@ -156,8 +156,28 @@ class DeltaVMap{
       dv["uranus lo"] = dv["ariel transfer"] + 4.802;
       dv["uranus"] = dv["uranus lo"] + 15.807;
 
-      //neptune system
+      ////neptune system
       dv["neptune transfer"] = dv["uranus transfer"] + 0.269;
+      dv["neptune capture/escape"] = dv["neptune transfer"] + 0.354;
+      //nereid
+      dv["nereid transfer"] = dv["nereid capture/escape"] + 0.05;
+      dv["nereid capture/escape"] = dv["nereid transfer"] + 0.87;
+      dv["nereid lo"] = dv["nereid capture/escape"] + 0.04;
+      dv["nereid"] = dv["nereid lo"] + 0.09;
+      //triton
+      dv["triton transfer"] = dv["nereid transfer"] + 0.740;
+      dv["triton capture/escape"] = dv["triton transfer"] + 1.707;
+      dv["triton lo"] = dv["triton capture/escape"] + 0.411;
+      dv["triton"] = dv["triton lo"] + 1.046;
+      //proteus system
+      dv["proteus transfer"] = dv["triton transfer"] + 1.38;
+      dv["proteus capture/escape"] = dv["proteus transfer"] + 2.9;
+      dv["proteus lo"] = dv["proteus capture/escape"] + 0.05;
+      dv["proteus"] = dv["proteus lo"] + 0.11;
+      //
+      dv["neptune lo"] = dv["Io transfer"] + 4.58;
+      dv["neptune"] = dv["jupiter lo"] + 16.781;
+      ////
     }
 
     void kuiperBelt(){
