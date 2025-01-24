@@ -1,6 +1,6 @@
 //Helix Industries DeltaV Calculator
 //by Benjamin Clemas
-//V0.55
+//V0.65
 
 #include <iostream>
 #include <bits/stdc++.h>
@@ -107,8 +107,27 @@ class DeltaVMap{
       dv["jupiter"] = dv["jupiter lo"] + 33.146;
       ////
 
-      //saturn system
+      ////saturn system
       dv["saturn transfer"] = dv["jupiter transfer"] + 0.987;
+      dv["saturn capture/escape"] = dv["saturn transfer"] + 0.421;
+      //lapetus
+      dv["lapetus transfer"] = dv["saturn capture/escape"] + 0.301;
+      dv["lapetus capture/escape"] = dv["lapetus transfer"] + 2.162;
+      dv["lapetus lo"] = dv["lapetus capture/escape"] + 0.162;
+      dv["lapetus"] = dv["lapetus lo"] + 0.418;
+      //titan
+      dv["titan transfer"] = dv["lapetus transfer"] + 0.556;
+      dv["titan capture/escape"] = dv["titan transfer"] + 2.202;
+      dv["titan lo"] = dv["titan capture/escape"] + 0.656;
+      dv["titan"] = dv["titan lo"] + 8.341;
+      //rhea
+      dv["rhea transfer"] = dv["titan transfer"] + 1.039;
+      dv["rhea capture/escape"] = dv["rhea transfer"] + 4.163;
+      dv["rhea lo"] = dv["rhea capture/escape"] + 0.129;
+      dv["rhea"] = dv["rhea lo"] + 0.298;
+      //
+      dv["saturn lo"] = dv["rhea transfer"] + 8.328;
+      dv["saturn"] = dv["saturn lo"] + 20.413;
 
       //uranus system
       dv["uranus transfer"] = dv["saturn transfer"] + 0.690;
@@ -165,6 +184,7 @@ void DVLoad(){
   "\n| - Gravity assist and inclination changes are ignored                                |"
   "\n|                                                                                     |"
   "\n| All outputs are in DeltaV I.e. Km/s^2                                               |"
+  "\n| !WARNING OUTPUTS ARE APPROXIMATIONS!                                                |"
   "\n| Type !help for commands and help                                                    |"
   "\n|=====================================================================================|" << endl;
 }
