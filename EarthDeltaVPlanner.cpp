@@ -1,6 +1,6 @@
 //Helix Industries DeltaV Calculator
 //by Benjamin Clemas
-//V0.4
+//V0.55
 
 #include <iostream>
 #include <bits/stdc++.h>
@@ -10,94 +10,133 @@ class DeltaVMap{
   public:
     map <string, double> dv;
     void innerSystem(){
-      //Earth System
-      dv["Earth LO"] = 9.256;
-      dv["Earth GEO"] = dv["Earth LO"] + 2.44;
+      //earth system
+      dv["earth lo"] = 9.256;
+      dv["earth geo"] = dv["earth lo"] + 2.44;
 
-      dv["Moon Transfer"] = dv["Earth GEO"] + 0.679;
-      dv["Moon Capture/Escape"] = dv["Moon Transfer"] + 0.145;
-      dv["Moon LO"] = dv["Moon Capture/Escape"] + 0.676;
-      dv["Moon"] = dv["Moon LO"] + 1.721;
+      dv["moon transfer"] = dv["earth geo"] + 0.679;
+      dv["moon capture/escape"] = dv["moon transfer"] + 0.145;
+      dv["moon lo"] = dv["moon capture/escape"] + 0.676;
+      dv["moon"] = dv["moon lo"] + 1.721;
 
-      dv["Earth Capture/Escape"] = dv["Moon Transfer"] + 0.093;
+      dv["earth capture/escape"] = dv["moon transfer"] + 0.093;
       
-      //Mars System
-      dv["Mars Transfer"] = dv["Earth Capture/Escape"] + 0.388;
-      dv["Mars Capture/Escape"] = dv["Mars Transfer"] + 0.673;
+      //mars system
+      dv["mars transfer"] = dv["earth capture/escape"] + 0.388;
+      dv["mars capture/escape"] = dv["mars transfer"] + 0.673;
       
-      dv["Deimos Transfer"] = dv["Mars Capture/Escape"] + 0.336;
-      dv["Deimos Capture/Escape"] = dv["Deimos Transfer"] + 0.649;
-      dv["Deimos LO"] = dv["Deimos Capture/Escape"] + 0.002;
-      dv["Deimos"] = dv["Deimos LO"] + 0.004;
+      dv["deimos transfer"] = dv["mars capture/escape"] + 0.336;
+      dv["deimos capture/escape"] = dv["deimos transfer"] + 0.649;
+      dv["deimos lo"] = dv["deimos capture/escape"] + 0.002;
+      dv["deimos"] = dv["deimos lo"] + 0.004;
 
-      dv["Phobos Transfer"] = dv["Deimos Transfer"] + 0.395;
-      dv["Phobos Escape/Capture"] = dv["Phobos Transfer"] + 0.535;
-      dv["Phobos LO"] = dv["Phobos Escape/Capture"] + 0.003;
-      dv["Phobos"] = dv["Phobos LO"] + 0.006;
+      dv["phobos transfer"] = dv["deimos transfer"] + 0.395;
+      dv["phobos escape/capture"] = dv["phobos transfer"] + 0.535;
+      dv["phobos lo"] = dv["phobos escape/capture"] + 0.003;
+      dv["phobos"] = dv["phobos lo"] + 0.006;
 
-      dv["Mars LO"] = dv["Phobos Transfer"] + 0.698;
-      dv["Mars"] = dv["Mars LO"] + 3.578;
+      dv["mars lo"] = dv["phobos transfer"] + 0.698;
+      dv["mars"] = dv["mars lo"] + 3.578;
 
-      //Venus System
-      dv["Venus Transfer"] = dv["Earth Capture/Escape"] + 0.28;
-      dv["Venus Capture/Escape"] = dv["Venus Transfer"] + 0.359;
-      dv["Venus LO"] = dv["Venus Capture/Escape"] + 2.939;
-      dv["Venus"] = dv["Venus LO"] + 29.705;
+      //venus system
+      dv["venus transfer"] = dv["earth capture/escape"] + 0.28;
+      dv["venus capture/escape"] = dv["venus transfer"] + 0.359;
+      dv["venus lo"] = dv["venus capture/escape"] + 2.939;
+      dv["venus"] = dv["venus lo"] + 29.705;
 
-      //Mercury System
-      dv["Mercury Transfer"] = dv["Venus Transfer"] + 2.085;
-      dv["Mercury Capture/Escape"] = dv["Mercury Transfer"] + 6.31;
-      dv["Mercury LO"] = dv["Mercury Capture/Escape"] + 1.220;
-      dv["Mercury"] = dv["Mercury LO"] + 3.062;
+      //mercury system
+      dv["mercury transfer"] = dv["venus transfer"] + 2.085;
+      dv["mercury capture/escape"] = dv["mercury transfer"] + 6.31;
+      dv["mercury lo"] = dv["mercury capture/escape"] + 1.220;
+      dv["mercury"] = dv["mercury lo"] + 3.062;
 
-      dv["Sun Transfer"] = dv["Mercury Transfer"] + 15.745;
-      dv["Sun LO"] = dv["Sun Transfer"] + 178.107;
-      dv["Sun"] = dv["Sun LO"] + 440;
+      dv["sun transfer"] = dv["mercury transfer"] + 15.745;
+      dv["sun lo"] = dv["sun transfer"] + 178.107;
+      dv["sun"] = dv["sun lo"] + 440;
     }
 
     void asteroidBelt(){
-      //Asteroid Belt
-      dv["Vesta Transfer"] = dv["Mars Transfer"] + 0.923;
+      //asteroid belt
+      dv["vesta transfer"] = dv["mars transfer"] + 0.923;
+      dv["vesta capture/escape"] = dv["vesta transfer"] + 4.096;
+      dv["vesta lo"] = dv["vesta capture/escape"] + 0.102;
+      dv["vesta"] = dv["vesta lo"] + 0.173;
       
-      dv["Ceres Transfer"] = dv["Vesta Transfer"] + 0.379;
+      dv["ceres transfer"] = dv["vesta transfer"] + 0.379;
+      dv["ceres capture/escape"] = dv["ceres transfer"] + 4.381;
+      dv["ceres lo"] = dv["ceres capture/escape"] + 0.148;
+      dv["ceres"] = dv["ceres lo"] + 0.28;
 
-      dv["Hygiea Transfer"] = dv["Ceres Transfer"] + 0.297;
+      dv["pallas transfer"] = dv["ceres transfer"] + 0.003;
+      dv["pallas capture/escape"] = dv["pallas transfer"] + 4.562;
+      dv["pallas lo"] = dv["pallas capture/escape"] + 0.091;
+      dv["pallas"] = dv["pallas lo"] + 0.172;
+
+      dv["hygiea transfer"] = dv["pallas transfer"] + 0.297;
+      dv["hygiea capture/escape"] = dv["hygiea transfer"] + 4.915;
+      dv["hygiea lo"] = dv["hyigeo capture/escape"] + 0.063;
+      dv["hygiea"] = dv["hygiea lo"] + 0.139;
     }
 
     void gasAndIceGiants(){
-      //Jupiter System
-      dv["Jupiter Transfer"] = dv["Hygiea Transfer"] + 1.099;
+      ////jupiter system
+      dv["jupiter transfer"] = dv["jupiter transfer"] + 1.099;
+      dv["jupiter capture/escape"] = dv["jupiter transfer"] + 0.271;
+      //callisto
+      dv["callisto transfer"] = dv["jupiter capture/escape"] + 1.114;
+      dv["callisto capture/escape"] = dv["callisto transfer"] + 4.025;
+      dv["callisto lo"] = dv["callisto capture/escape"] + 0.701;
+      dv["callisto"] = dv["callisto lo"] + 1.75;
+      //ganymede
+      dv["ganymede transfer"] = dv["callisto transfer"] + 0.804;
+      dv["ganymede capture/escape"] = dv["ganymede transfer"] + 4.790;
+      dv["ganymede lo"] = dv["ganymede capture/escape"] + 0.788;
+      dv["ganymede"] = dv["ganymede lo"] + 1.947;
+      //nepture system
+      dv["europa transfer"] = dv["ganymede transfer"] + 1.055;
+      dv["europa capture/escape"] = dv["europa transfer"] + 5.920;
+      dv["europa lo"] = dv["europa capture/escape"] + 0.575;
+      dv["europa"] = dv["europa lo"] + 1.444;
+      //nepture system
+      dv["io transfer"] = dv["europa transfer"] + 1.558;
+      dv["io capture/escape"] = dv["io transfer"] + 5.783;
+      dv["io lo"] = dv["io capture/escape"] + 0.730;
+      dv["io"] = dv["io lo"] + 1.781;
+      //
+      dv["jupiter lo"] = dv["Io transfer"] + 12.667;
+      dv["jupiter"] = dv["jupiter lo"] + 33.146;
+      ////
 
-      //Saturn System
-      dv["Saturn Transfer"] = dv["Jupiter Transfer"] + 0.987;
+      //saturn system
+      dv["saturn transfer"] = dv["jupiter transfer"] + 0.987;
 
-      //Uranus System
-      dv["Uranus Transfer"] = dv["Saturn Transfer"] + 0.690;
+      //uranus system
+      dv["uranus transfer"] = dv["saturn transfer"] + 0.690;
 
-      //Nepture System
-      dv["Nepture Transfer"] = dv["Uranus Transfer"] + 0.269;
+      //nepture system
+      dv["nepture transfer"] = dv["uranus transfer"] + 0.269;
     }
 
     void kuiperBelt(){
-      //Pluto System
-      dv["Pluto Transfer"] = dv["Neptune Transfer"] + 0.117;
+      //pluto system
+      dv["pluto transfer"] = dv["neptune transfer"] + 0.117;
 
-      //Haumea System
-      dv["Haumea Transfer"] = dv["Pluto Transfer"] + 0.033;
+      //haumea system
+      dv["haumea transfer"] = dv["pluto transfer"] + 0.033;
 
-      //Makemake System
-      dv["Makemake Transfer"] = dv["Haumea Transfer"] + 0.017;
+      //makemake system
+      dv["makemake transfer"] = dv["haumea transfer"] + 0.017;
     }
 
     void outerSystem(){
-      //Eris System
-      dv["Eris Transfer"] = dv["Makemake Transfer"] + 0.109;
+      //eris system
+      dv["eris transfer"] = dv["makemake transfer"] + 0.109;
 
-      //Sedma System
-      dv["Sedna Transfer"] = dv["Eris Transfer"] + 0.2;
+      //sedma system
+      dv["sedna transfer"] = dv["eris transfer"] + 0.2;
 
-      //Sun Escape
-      dv["Sun Esacape"] = dv["Sedna Transfer"] + 0.03;
+      //sun escape
+      dv["sun escape"] = dv["sedna transfer"] + 0.03;
     }
 
     map <string, double> main(){
@@ -139,7 +178,9 @@ void DVSearch(map<string, double> dv){
     "\nE.g. (Moon, Earth LO, Mars Capture/Escape, Sun Transfer, etc)"
     "\nenter blank to stop \n\n> ";
     
+    string target;
     getline(cin, target);
+    transform(target.begin(),target.end(),target.begin(),::tolower);
 
     if (target == "!help"){
       DVLoad();
@@ -152,22 +193,24 @@ void DVSearch(map<string, double> dv){
       "\n| Hope that helps :3 - Benjamin Clemas 2025                                           |"
       "\n|=====================================================================================|" << endl;
     }
-    cout << target;
-
-    if (target.empty()){
-      run = false;
-    }
 
     else {
-      double dvalue = dv[target];
-
-      if (dvalue == 0 && target != "Earth") {
-        cout << "ERROR: Target Not Found"
-        "\nPlease enter valid Target"
-        "\nif help needed type !help\n\n";
+      if (target.empty()){
+      run = false;
       }
-      else{
-        cout << "Calculating...\n" << target << " can be reached with:\n " << dvalue << " DeltaV (KM/s^2)\n" << endl;
+
+      else {
+        double dvalue = dv[target];
+
+        if (dvalue == 0 && target != "earth") {
+          cout << "ERROR: Target Not Found"
+          "\nPlease enter valid Target"
+          "\nif help needed type !help\n\n";
+        }
+        else{
+          target[0] = toupper(target[0]);
+          cout << "Calculating...\n'" << target << "' can be reached with:\n " << dvalue << " DeltaV (KM/s^2)\n" << endl;
+        }
       }
     }
   }
