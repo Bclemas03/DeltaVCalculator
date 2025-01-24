@@ -80,7 +80,7 @@ class DeltaVMap{
 
     void gasAndIceGiants(){
       ////jupiter system
-      dv["jupiter transfer"] = dv["jupiter transfer"] + 1.099;
+      dv["jupiter transfer"] = dv["hygiea transfer"] + 1.099;
       dv["jupiter capture/escape"] = dv["jupiter transfer"] + 0.271;
       //callisto
       dv["callisto transfer"] = dv["jupiter capture/escape"] + 1.114;
@@ -129,11 +129,35 @@ class DeltaVMap{
       dv["saturn lo"] = dv["rhea transfer"] + 8.328;
       dv["saturn"] = dv["saturn lo"] + 20.413;
 
-      //uranus system
-      dv["uranus transfer"] = dv["saturn transfer"] + 0.690;
+      ////uranus system
+      dv["uranus transfer"] = dv["uranus transfer"] + 0.690;
+      dv["uranus capture/escape"] = dv["uranus transfer"] + 0.513;
+      //oberon
+      dv["oberon transfer"] = dv["uranus capture/escape"] + 0.46;
+      dv["oberon capture/escape"] = dv["oberon transfer"] + 1.621;
+      dv["oberon lo"] = dv["oberon capture/escape"] + 0.208;
+      dv["oberon"] = dv["oberon lo"] + 0.531;
+      //titania
+      dv["titania transfer"] = dv["oberon transfer"] + 0.149;
+      dv["titania capture/escape"] = dv["titania transfer"] + 1.784;
+      dv["titania lo"] = dv["titania capture/escape"] + 0.215;
+      dv["titania"] = dv["titania lo"] + 0.546;
+      //umbriel
+      dv["umbriel transfer"] = dv["titania transfer"] + 0.362;
+      dv["umbriel capture/escape"] = dv["umbriel transfer"] + 2.210;
+      dv["umbriel lo"] = dv["umbriel capture/escape"] + 0.152;
+      dv["umbriel"] = dv["umbriel lo"] + 0.387;
+      //ariel
+      dv["ariel transfer"] = dv["umbriel transfer"] + 0.346;
+      dv["ariel capture/escape"] = dv["ariel transfer"] + 2.318;
+      dv["ariel lo"] = dv["ariel capture/escape"] + 0.151;
+      dv["ariel"] = dv["ariel lo"] + 0.378;
+      //
+      dv["uranus lo"] = dv["ariel transfer"] + 4.802;
+      dv["uranus"] = dv["uranus lo"] + 15.807;
 
-      //nepture system
-      dv["nepture transfer"] = dv["uranus transfer"] + 0.269;
+      //neptune system
+      dv["neptune transfer"] = dv["uranus transfer"] + 0.269;
     }
 
     void kuiperBelt(){
