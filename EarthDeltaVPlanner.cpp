@@ -1,6 +1,6 @@
 //Helix Industries DeltaV Calculator
 //by Benjamin Clemas
-//V0.8
+//V0.9
 
 #include <iostream>
 #include <bits/stdc++.h>
@@ -181,14 +181,40 @@ class DeltaVMap{
     }
 
     void kuiperBelt(){
-      //pluto system
+      ////pluto system
       dv["pluto transfer"] = dv["neptune transfer"] + 0.117;
+      dv["pluto capture/escape"] = dv["pluto transfer"] + 2.703;
+      //charon
+      dv["charon transfer"] = dv["pluto capture/escape"] + 0.036;
+      dv["charon capture/escape"] = dv["charon transfer"] + 0.016;
+      dv["charon lo"] = dv["charon capture/escape"] + 0.166;
+      dv["charon"] = dv["charon lo"] + 0.427;
+      //
+      dv["pluto lo"] = dv["pluto capture/escape"] + 0.304;
+      dv["pluto"] = dv["pluto lo"] + 0.876;
 
       //haumea system
       dv["haumea transfer"] = dv["pluto transfer"] + 0.033;
+      dv["haumea capture/escape"] = dv["haumea transfer"] + 2.836;
+      //hi'iaka
+      dv["hi'iaka transfer"] = dv["haumea capture/escape"] + 0.006;
+      dv["hi'iaka capture/escape"] = dv["hi'iaka transfer"] + 0.016;
+      dv["hi'iaka lo"] = dv["hi'iaka capture/escape"] + 0.031;
+      dv["hi'iaka"] = dv["hi'iaka lo"] + 0.097;
+      //namaka
+      dv["namaka transfer"] = dv["hi'iaka transfer"] + 0.006;
+      dv["namaka capture/escape"] = dv["namaka transfer"] + 0.046;
+      dv["namaka lo"] = dv["namaka capture/escape"] + 0.012;
+      dv["namaka"] = dv["namaka lo"] + 0.045;
+      //
+      dv["haumea lo"] = dv["hnamaka transfer"] + 0.229;
+      dv["haumea"] = dv["haumea lo"] + 0.356;
 
       //makemake system
       dv["makemake transfer"] = dv["haumea transfer"] + 0.017;
+      dv["makemake capture/escape"] = dv["makemake transfer"] + 2.857;
+      dv["makemake lo"] = dv["makemake capture/escape"] + 0.209;
+      dv["makemake"] = dv["makemake lo"] + 0.517;
     }
 
     void outerSystem(){
