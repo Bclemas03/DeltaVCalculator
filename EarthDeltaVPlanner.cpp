@@ -1,12 +1,13 @@
 //Helix Industries DeltaV Calculator
 //by Benjamin Clemas
-//V0.1
+//V0.2
 
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
 
 map <string, double> dv;
+string target;
 bool run = true;
 
 map <string, double> DeltaVMap(){
@@ -57,14 +58,16 @@ map <string, double> DeltaVMap(){
   return dv;
 }
 
-void DVLoad(){
+void DVLoadMap(){
   cout << "LOADING DELTAV MAP..." << endl;
   dv = DeltaVMap();
-  cout << "LOADING DELTAV MAP LOADED!\n" 
-  "|====================================|"<< endl;
-  cout <<
-  "|Welcome to the Earth DeltaV Planner!|\n"
-  "|------------------------------------+------------------------------------------------|"
+  cout << "LOADING DELTAV MAP LOADED!\n";
+}
+
+void DVLoad(){
+  cout << "\n|====================================|"
+  "\n|Welcome to the Earth DeltaV Planner!|"
+  "\n|------------------------------------+------------------------------------------------|"
   "\n|Calculations are done based on the Wikipedia Commons Library Solar System DeltaV Map.|"
   "\n|Assumptions:                                                                         |"
   "\n| - Craft is on Earth near the Equator                                                |"
@@ -78,27 +81,51 @@ void DVLoad(){
 }
 
 void DVSearch(){
-  cout << "E";
+  while (run){
+    cout << 
+    "\nEnter Desired Destination"
+    "\nE.g. (Moon, Earth LO, Mars Capture/Escape, Sun Transfer, etc)"
+    "\nenter blank to stop \n\n> ";
+    
+    getline(cin, target);
+
+    if (target == "!help"){
+      DVLoad();
+      cout <<
+      "\n|=====================================================================================|"
+      "\n| Valid destinations are in the following format:                                     |"
+      "\n| Body Type                                                                           |"
+      "\n| Body : being any celestial body in the map e.g. Mercury, Venus, Earth, Mars etc     |"
+      "\n| Type : Capture/Escape, Transfer, LO (Low Orbit) if empty type assumes Surface       |"
+      "\n| Hope that helps :3 - Benjamin Clemas 2025                                           |"
+      "\n|=====================================================================================|" << endl;
+    }
+    cout << target;
+
+    if (target.empty()){
+      run = false;
+    }
+
+    else {
+      double dvalue = dv[target];
+
+      if (dvalue == 0 && target != "Earth") {
+        cout << "ERROR: Target Not Found"
+        "\nPlease enter valid Target"
+        "\nif help needed type !help\n\n";
+      }
+      else{
+        cout << "Calculating...\n" << target << " can be reached with:\n " << dvalue << " DeltaV (KM/s^2)\n" << endl;
+      }
+    }
+  }
 }
 
 int main() 
 {
+  DVLoadMap();
   DVLoad();
 
   DVSearch();
-
-  while (run) {
-
-    cout << dv["Sun"] << endl;
-
-    string choice;
-    cout << "Continue? (Y/N)\n";
-    cin >> choice;
-    if (choice == "N") {
-        run = false;
-    }
-  
-  }
-
   return 0;
 } 
