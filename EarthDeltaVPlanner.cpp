@@ -57,10 +57,35 @@ map <string, double> DeltaVMap(){
   return dv;
 }
 
+void DVLoad(){
+  cout << "LOADING DELTAV MAP..." << endl;
+  dv = DeltaVMap();
+  cout << "LOADING DELTAV MAP LOADED!\n" 
+  "|====================================|"<< endl;
+  cout <<
+  "|Welcome to the Earth DeltaV Planner!|\n"
+  "|------------------------------------+------------------------------------------------|"
+  "\n|Calculations are done based on the Wikipedia Commons Library Solar System DeltaV Map.|"
+  "\n|Assumptions:                                                                         |"
+  "\n| - Craft is on Earth near the Equator                                                |"
+  "\n| - Craft is in the perfect launch window for the destination                         |"
+  "\n| - Burns are calcuated at Periapsis                                                  |"
+  "\n| - Gravity assist and inclination changes are ignored                                |"
+  "\n|                                                                                     |"
+  "\n| All outputs are in DeltaV I.e. Km/s^2                                               |"
+  "\n| Type !help for commands and help                                                    |"
+  "\n|=====================================================================================|" << endl;
+}
+
+void DVSearch(){
+  cout << "E";
+}
 
 int main() 
 {
-  dv = DeltaVMap();
+  DVLoad();
+
+  DVSearch();
 
   while (run) {
 
