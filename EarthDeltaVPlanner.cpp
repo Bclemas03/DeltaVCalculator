@@ -9,10 +9,7 @@ using namespace std;
 map <string, double> dv;
 bool run = true;
 
-
-
-int main() 
-{
+map <string, double> DeltaVMap(){
   //Earth System
   dv["Earth LEO"] = 9.256;
   dv["Earth GEO"] = dv["Earth LEO"] + 2.44;
@@ -25,11 +22,24 @@ int main()
   
   //Venus System
   dv["Venus Transfer"] = dv["Earth Capture/Escape"] + 0.28;
-  dv["Venus Capture"] = dv["Venus Transfer"] + 0.359;
-  dv["Venus LVO"] = dv["Venus Capture"] + 2.939;
-  
+  dv["Venus Capture/Escape"] = dv["Venus Transfer"] + 0.359;
+  dv["Venus LVO"] = dv["Venus Capture/Escape"] + 2.939;
+  dv["Venus"] = dv["Venus LVO"] + 29.705;
 
-  
+  //Mercury System
+  dv["Mercury Transfer"] = dv["Venus Transfer"] + 2.085;
+  dv["Mercury Capture/Escape"] = dv["Mercury Transfer"] + 6.31;
+  dv["Mercury LMO"] = dv["Mercury Capture/Escape"] + 1.220;
+  dv["Mercury"] = dv["Mercury LMO"] + 3.062;
+
+  return dv;
+}
+
+
+int main() 
+{
+  dv = DeltaVMap();
+
   while (run) {
 
     cout << dv["Earth Capture/Escape"] << endl;
