@@ -130,7 +130,7 @@ class DeltaVMap{
       dv["saturn"] = dv["saturn lo"] + 20.413;
 
       ////uranus system
-      dv["uranus transfer"] = dv["uranus transfer"] + 0.690;
+      dv["uranus transfer"] = dv["saturn transfer"] + 0.690;
       dv["uranus capture/escape"] = dv["uranus transfer"] + 0.513;
       //oberon
       dv["oberon transfer"] = dv["uranus capture/escape"] + 0.46;
@@ -175,8 +175,8 @@ class DeltaVMap{
       dv["proteus lo"] = dv["proteus capture/escape"] + 0.05;
       dv["proteus"] = dv["proteus lo"] + 0.11;
       //
-      dv["neptune lo"] = dv["Io transfer"] + 4.58;
-      dv["neptune"] = dv["jupiter lo"] + 16.781;
+      dv["neptune lo"] = dv["proteus transfer"] + 4.58;
+      dv["neptune"] = dv["neptune lo"] + 16.781;
       ////
     }
 
