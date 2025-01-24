@@ -1,6 +1,6 @@
 //Helix Industries DeltaV Calculator
 //by Benjamin Clemas
-//V0.9
+//V1
 
 #include <iostream>
 #include <bits/stdc++.h>
@@ -220,9 +220,15 @@ class DeltaVMap{
     void outerSystem(){
       //eris system
       dv["eris transfer"] = dv["makemake transfer"] + 0.109;
+      dv["eris capture/escape"] = dv["eris transfer"] + 1.956;
+      dv["eris lo"] = dv["eris capture/escape"] + 0.388;
+      dv["eris"] = dv["eris lo"] + 0.937;
 
       //sedma system
       dv["sedna transfer"] = dv["eris transfer"] + 0.2;
+      dv["sedna capture/escape"] = dv["sedna transfer"] + 0.820;
+      dv["sedna lo"] = dv["sedna capture/escape"] + 0.150;
+      dv["sedna"] = dv["sedna lo"] + 0.290;
 
       //sun escape
       dv["sun escape"] = dv["sedna transfer"] + 0.03;
