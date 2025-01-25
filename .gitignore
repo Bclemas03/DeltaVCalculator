@@ -26,6 +26,12 @@
 *.a
 *.lib
 
+#VS
+*.vs
+*.vscode
+*.sln
+*.vcxproj
+
 # Executables
 #*.exe
 #*.out
