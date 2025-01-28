@@ -1,6 +1,7 @@
-//Helix Industries DeltaVPlanner
+//Helix Industries SolDeltaVCalculator
 //by Benjamin Clemas
-//V1
+//V2
+
 #include <iostream>
 #include <cmath>
 #include <bits/stdc++.h>
@@ -11,6 +12,7 @@ using namespace std;
 //r  is the distance of the orbiting body from the primary focus,
 //a  is the semi-major axis of the body's orbit.
 
+//mass of plannets in km^3
 map <string, long double> MU =
 {
     {"sun" , 132712440017.987},
@@ -29,6 +31,7 @@ map <string, long double> MU =
     {"calliso" , 7180.99840324153}
 };
 
+//radius of planets in km
 map <string, long double> RU = 
 {
     {"sun", 695700},
@@ -42,14 +45,31 @@ map <string, long double> RU =
     {"neptune", 24764}
 };
 
+//average distance of planets to Sun in km
+map <string, long double> AU = 
+{
+    {"sun", 0},
+    {"mercury" , 57000000},
+    {"venus" , 108000000},
+    {"earth" , 150000000},
+    {"mars" , 228000000},
+    {"jupiter" , 779000000},
+    {"saturn" , 1430000000},
+    {"uranus" , 2880000000},
+    {"neptune" , 4500000000},
+    {"pluto" , 4280000000}
+
+};
+
 class Hohmann{
     private:
         double MU;
         double RU;
         double R1;
         double R2;
+
     public:
-        Hohmann(const double mu, const double ru, const double r1, const double r2){
+        Hohmann(double mu, double ru, double r1, double r2){
             MU = mu;
             RU = ru;
             R1 = r1;
@@ -74,7 +94,7 @@ class Hohmann{
         }
 
         double time(double a_transfer){
-            return sqrt(pow(a_transfer, 3) / MU) / 60;
+             return sqrt(pow(a_transfer, 3) / MU) / 60;
         }
 
         void print(double h1, double h2, double a_transfer, double v1, double v2, double v){
@@ -90,23 +110,31 @@ class Hohmann{
 
 int main()
 {
-    string source;
-    cout << "enter source: ";
-    cin >> source;
+    string origin;
+    cout << "Enter Origin: ";
+    cin >> origin;
 
-    double r1 = 0.0;
-    cout << "enter r1: ";
-    cin >> r1;
+    string destination;
+    cout << "Enter Destination: ";
+    cin >> destination;
 
-    // //radius of orbit 2
-    double r2 = 0.0;
-    cout << "enter r2: ";
-    cin >> r2;
+    if (origin == destination){
+        double r1 = 0.0;
+        cout << "enter r1: ";
+        cin >> r1;
+
+        double r2 = 0.0;
+        cout << "enter r2: ";
+        cin >> r2;
+
+        Hohmann hohmann(MU[origin], RU[origin], r1, r2);
+        hohmann.transfer();
+    }
     
+    else{
+        Hohmann hohmann(MU["sun"], RU["sun"], AU[origin], AU[destination]);
+        hohmann.transfer();
+    }
 
-    Hohmann hohmann(MU[source],RU[source],r1,r2);
-   
-    hohmann.transfer();
-    // cin;
     return 0;
 }
