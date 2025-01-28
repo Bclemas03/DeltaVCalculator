@@ -1,9 +1,11 @@
-//Helix Industries DeltaVPlanner
+//Helix Industries SolDeltaVCalculator
 //by Benjamin Clemas
-//V1
+//V2
+
 #include <iostream>
 #include <bits/stdc++.h>
-#include "SolDeltaVMap.h"
+#include "Sol.h"
+#include "Hohmann.h"
 using namespace std;
 
 
@@ -14,14 +16,15 @@ bool run = true;
 
 void DVLoad(){
   cout << "\n|====================================|"
-  "\n|Welcome to the Earth DeltaV Planner!|"
+  "\n|Welcome to the Sol DeltaV Calculator!|"
   "\n|------------------------------------+------------------------------------------------|"
   "\n|Calculations are done based on the Wikipedia Commons Library Solar System DeltaV Map.|"
   "\n|Assumptions:                                                                         |"
-  "\n| - Craft is on Earth near the Equator                                                |"
-  "\n| - Craft is in the perfect launch window for the destination                         |"
+  "\n| - Craft is in orbit of origin                                                       |"
+  "\n| - Origin and Destination are in their orbits average distance of the Sun            |"
   "\n| - Burns are calcuated at Periapsis                                                  |"
   "\n| - Gravity assist and inclination changes are ignored                                |"
+  "\n| - Acceleration is instant                                                           |"
   "\n|                                                                                     |"
   "\n| All outputs are in DeltaV I.e. Km/s^2                                               |"
   "\n| !WARNING OUTPUTS ARE APPROXIMATIONS!                                                |"
@@ -29,20 +32,20 @@ void DVLoad(){
   "\n|=====================================================================================|" << endl;
 }
 
-void DVSearch(map<string, double> dv){
-  cout << "DELTAV MAP LOADED!\n";
+void DVSearch(Sol sol){
+  cout << "Solar System LOADED!\n";
 
   while (run){
     cout << 
-    "\nEnter Desired Destination"
-    "\nE.g. (Moon, Earth LO, Mars Capture/Escape, Sun Transfer, etc)"
+    "\nEnter Desired Origin"
+    "\nE.g. (Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, or Neptune)"
     "\nenter blank to stop \n\n> ";
     
-    string target;
-    getline(cin, target);
-    transform(target.begin(),target.end(),target.begin(),::tolower);
-
-    if (target == "!help"){
+    string origin;
+    getline(cin, origin);
+    transform(origin.begin(),origin.end(),origin.begin(),::tolower);
+    
+    if (origin == "!help"){
       DVLoad();
       cout <<
       "\n|=====================================================================================|"
@@ -55,22 +58,44 @@ void DVSearch(map<string, double> dv){
     }
 
     else {
-      if (target.empty()){
-      run = false;
+      if (origin.empty()){
+        run = false;
       }
-
-      else {
-        double dvalue = dv[target];
-
-        if (dvalue == 0 && target != "earth") {
+      if (sol.AU[origin] == 0 && origin != "sun") {
           cout << "ERROR: Target Not Found"
           "\nPlease enter valid Target"
           "\nif help needed type !help\n\n";
+      }
+
+      else {
+        cout << 
+        "\nEnter Desired Destination"
+        "\nE.g. (Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, or Neptune)\n\n> ";
+        
+        string destination;
+        getline(cin, destination);
+        transform(destination.begin(),destination.end(),destination.begin(),::tolower);
+
+        if (origin == destination){
+            double r1 = 0.0;
+            cout << "Enter Origin Orbit (km): ";
+            cin >> r1;
+
+            double r2 = 0.0;
+            cout << "Enter Destination Orbit (km): ";
+            cin >> r2;
+
+            Hohmann hohmann(sol.MU[origin], sol.RU[origin], r1, r2);
+            hohmann.transfer();
         }
+    
         else{
-          target[0] = toupper(target[0]);
-          cout << "Calculating...\n'" << target << "' can be reached with:\n " << dvalue << " DeltaV (KM/s^2)\n" << endl;
+            Hohmann hohmann(sol.MU["sun"], sol.RU["sun"], sol.AU[origin], sol.AU[destination]);
+            hohmann.transfer();
         }
+
+
+        
       }
     }
   }
@@ -78,10 +103,10 @@ void DVSearch(map<string, double> dv){
 
 int main() 
 {
-  cout << "LOADING DELTAV MAP..." << endl;
-  DeltaVMap dvMap;
+  cout << "LOADING Solar System..." << endl;
+  Sol sol;
   DVLoad();
 
-  DVSearch(dvMap.main());
+  DVSearch(sol);
   return 0;
 } 
