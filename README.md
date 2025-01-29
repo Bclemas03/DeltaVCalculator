@@ -6,7 +6,7 @@ This Calculator is very accurate for local transfers between orbits of a single 
 
 ## Assumptions
 - Craft is in orbit of Origin at 0km for interplanetery calculations, otherwise in origin orbit.
-- Origin and Destination planets are in their orbits average distance of the Sun
+- Origin and Destination planets are in their orbits closest distance of the Sun
 - Burns are calcuated at Periapsis
 - Gravity assist and inclination changes are ignored
 - Acceleration is instant
