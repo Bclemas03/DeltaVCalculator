@@ -6,6 +6,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//class storing data for the simulation of solar system in hohmann transfer calculations
+//taken from scientific articals and web pages which listed simular calcualations.
 class Sol{
   public:
 

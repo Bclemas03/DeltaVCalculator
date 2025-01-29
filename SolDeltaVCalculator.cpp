@@ -1,19 +1,16 @@
 //Helix Industries SolDeltaVCalculator
 //by Benjamin Clemas
 //V2.25
-
 #include <iostream>
 #include <bits/stdc++.h>
 #include "Sol.h"
 #include "Hohmann.h"
 using namespace std;
 
-
-
-string target;
+//run for search loop
 bool run = true;
 
-
+//info printer for loading and !help
 void DVLoad(){
   cout << "\n|====================================|"
   "\n|Welcome to the Sol DeltaV Calculator!|"
@@ -32,9 +29,11 @@ void DVLoad(){
   "\n|=====================================================================================|" << endl;
 }
 
+//search function handling input exceptions and calling hohmann 
 void DVSearch(Sol sol){
   cout << "Solar System LOADED!\n";
 
+  //loops searching until blank entered breaking the loop
   while (run){
     cout << 
     "\nEnter Desired Origin:"
@@ -45,6 +44,7 @@ void DVSearch(Sol sol){
     getline(cin, origin);
     transform(origin.begin(),origin.end(),origin.begin(),::tolower);
     
+    //detects when help is required and displays all info and special help info
     if (origin == "!help"){
       DVLoad();
       cout <<
@@ -58,11 +58,14 @@ void DVSearch(Sol sol){
     }
 
     else {
+
+      //checks if empty has been entered to break the loop or if origin is invalid to restart loop
       if (origin.empty()){
         run = false;
       }
+
       if (sol.AU[origin] == 0 && origin != "sun") {
-          cout << "ERROR: Target Not Found"
+          cout << "ERROR: Origin Not Found"
           "\nPlease enter valid Target"
           "\nif help needed type !help\n\n";
       }
@@ -76,7 +79,21 @@ void DVSearch(Sol sol){
         getline(cin, destination);
         transform(destination.begin(),destination.end(),destination.begin(),::tolower);
 
-        if (origin == destination){
+        
+        //checks if empty has been entered to break the loop or if destination is invalid to restart loop
+        if (destination.empty()){
+          run = false;
+        }
+        
+        if (sol.AU[destination] == 0 && destination != "sun") {
+          cout << "ERROR: Destination Not Found"
+          "\nPlease enter valid Target"
+          "\nif help needed type !help\n\n";
+        }
+
+        //checks if orgin == destination for local hohmann transfer calculation
+        else {
+          if (origin == destination){
             double r1 = 0.0;
             cout << "\nEnter Origin Orbit (km):\n> ";
             cin >> r1;
@@ -88,11 +105,14 @@ void DVSearch(Sol sol){
             Hohmann hohmann(sol.MU[origin], sol.RU[origin], r1, r2);
             hohmann.transfer();
             cin.ignore();
-        } 
+          } 
     
-        else{
-            Hohmann hohmann(sol.MU["sun"], sol.RU["sun"], sol.AU[origin], sol.AU[destination]);
-            hohmann.transfer();
+          //otherwise performs international hohmann transfer
+          //by pretenting it is a local transfer in orbit of the sun. By setting r1 and r2 to the origin and destinations closets orbits to the sun to minimise deltaV
+          else{
+              Hohmann hohmann(sol.MU["sun"], sol.RU["sun"], sol.AU[origin], sol.AU[destination]);
+              hohmann.transfer();
+          }
         }
       }
     }
@@ -101,8 +121,10 @@ void DVSearch(Sol sol){
 
 int main() 
 {
+  //loads the solar object which stores planets their masses, diameters and closest distances from the sun needed for simulating solar system for hohman inputs.
   cout << "LOADING Solar System..." << endl;
   Sol sol;
+  
   DVLoad();
 
   DVSearch(sol);
