@@ -19,6 +19,5 @@ Don't believe everything you read online, and over estimate DeltaV required, too
 
 #### Special Thanks
 to ATaylor for their work on digitising the Hohmann Transfer into C++. A key resource for the creation of my Hohmann.h code.
-In their ATaylor_HohmannTransferOrbitAnalysis_2024, avaliable at
-https://github.com/ATaylorAerospace/HohmannHET, which I accessed on 2025-01-29
+Their ATaylor_HohmannTransferOrbitAnalysis_2024, avaliable at https://github.com/ATaylorAerospace/HohmannHET, which I accessed on 2025-01-29.
 
