@@ -46,23 +46,23 @@ class Hohmann{
 
         void print(double h1, double h2, double a_transfer, double v1, double v2, double v){
             cout <<"\nCalculating...\n\n"
-            << "CALCULATION COMPLETE:\n"
-            << "============================================\n"
-            << "Initial Orbit Altitude: " << R1-RU << " km\n"
-            << "--------------------------------------------\n"
-            << "Final Orbit Altitude: " << R2-RU << " km\n"
-            << "--------------------------------------------\n"
-            << "Transfer Orbit Semi-Major Axis: " << R2-RU << " km\n"
-            << "--------------------------------------------\n"
+            "CALCULATION COMPLETE:\n"
+            "============================================\n"
+            "Initial Orbit Altitude: " << R1-RU << " km\n"
+            "--------------------------------------------\n"
+            "Final Orbit Altitude: " << R2-RU << " km\n"
+            "--------------------------------------------\n"
+            "Transfer Orbit Semi-Major Axis: " << R2-RU << " km\n"
+            //"--------------------------------------------\n"
             ////Broken for interplanety transfers
-            // << "Departure Burn DeltaV Required: ~" << v1 << " km/s\n"
-            // << "--------------------------------------------\n"
-            // << "Arrival Burn DeltaV Required: ~" << v2 << " km/s\n"
-            << "--------------------------------------------\n"
-            << "Total DeltaV Required: ~" << v << " km/s\n"
-            << "--------------------------------------------\n"
-            << "Transfer Time: " << time(a_transfer) << " minutes\n"
-            << "============================================\n\n";
+            //"Departure Burn DeltaV Required: ~" << v1 << " km/s\n"
+            //"--------------------------------------------\n"
+            //"Arrival Burn DeltaV Required: ~" << v2 << " km/s\n"
+            "--------------------------------------------\n"
+            "Total DeltaV Required: ~" << v << " km/s\n"
+            "--------------------------------------------\n"
+            "Transfer Time: " << time(a_transfer) << " minutes\n"
+            "============================================\n\n";
         }
 };
 

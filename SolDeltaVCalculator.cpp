@@ -1,6 +1,6 @@
 //Helix Industries SolDeltaVCalculator
 //by Benjamin Clemas
-//V2
+//V2.25
 
 #include <iostream>
 #include <bits/stdc++.h>
@@ -21,7 +21,7 @@ void DVLoad(){
   "\n|Calculations are done based on the Wikipedia Commons Library Solar System DeltaV Map.|"
   "\n|Assumptions:                                                                         |"
   "\n| - Craft is in orbit of origin                                                       |"
-  "\n| - Origin and Destination are in their orbits average distance of the Sun            |"
+  "\n| - Origin and Destination are in their orbits closest distance to the Sun            |"
   "\n| - Burns are calcuated at Periapsis                                                  |"
   "\n| - Gravity assist and inclination changes are ignored                                |"
   "\n| - Acceleration is instant                                                           |"
@@ -37,9 +37,9 @@ void DVSearch(Sol sol){
 
   while (run){
     cout << 
-    "\nEnter Desired Origin"
+    "\nEnter Desired Origin:"
     "\nE.g. (Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, or Neptune)"
-    "\nenter blank to stop \n\n> ";
+    "\nenter blank to stop \n> ";
     
     string origin;
     getline(cin, origin);
@@ -54,7 +54,7 @@ void DVSearch(Sol sol){
       "\n| Body : being any celestial body in the map e.g. Mercury, Venus, Earth, Mars etc     |"
       "\n| Type : Capture/Escape, Transfer, LO (Low Orbit) if empty type assumes Surface       |"
       "\n| Hope that helps :3 - Benjamin Clemas 2025                                           |"
-      "\n|=====================================================================================|" << endl;
+      "\n|=====================================================================================|\n";
     }
 
     else {
@@ -69,8 +69,8 @@ void DVSearch(Sol sol){
 
       else {
         cout << 
-        "\nEnter Desired Destination"
-        "\nE.g. (Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, or Neptune)\n\n> ";
+        "\nEnter Desired Destination:"
+        "\nE.g. (Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, or Neptune)\n> ";
         
         string destination;
         getline(cin, destination);
@@ -78,24 +78,22 @@ void DVSearch(Sol sol){
 
         if (origin == destination){
             double r1 = 0.0;
-            cout << "Enter Origin Orbit (km): ";
+            cout << "\nEnter Origin Orbit (km):\n> ";
             cin >> r1;
 
             double r2 = 0.0;
-            cout << "Enter Destination Orbit (km): ";
+            cout << "\nEnter Destination Orbit (km):\n> ";
             cin >> r2;
 
             Hohmann hohmann(sol.MU[origin], sol.RU[origin], r1, r2);
             hohmann.transfer();
-        }
+            cin.ignore();
+        } 
     
         else{
             Hohmann hohmann(sol.MU["sun"], sol.RU["sun"], sol.AU[origin], sol.AU[destination]);
             hohmann.transfer();
         }
-
-
-        
       }
     }
   }
